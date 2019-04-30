@@ -1,0 +1,10 @@
+FROM postgres:9.4
+
+COPY pg_hba.conf /var/lib/postgresql/data/
+COPY init.sql /docker-entrypoint-initdb.d/
+#COPY add_pln.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 5432
+USER postgres
+
+

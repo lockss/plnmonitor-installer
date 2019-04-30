@@ -1,0 +1,10 @@
+FROM openjdk:8-jre-alpine 
+
+USER root
+
+COPY plnmonitor-daemon.jar  /opt  
+
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
+CMD ["sh","-c","/wait && /usr/bin/java -jar /opt/plnmonitor-daemon.jar"]

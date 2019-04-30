@@ -1,0 +1,62 @@
+version: "2.2"
+services:
+  plnmonitordb:
+    build: 
+       context: .
+       dockerfile: DockerfileDatabase
+    ports:
+       - "5432"
+    volumes: 
+       - ./pln_dbdata:/var/lib/postgresql/data
+    environment:
+       POSTGRES_DB: plnmonitor
+       POSTGRES_USER: plnmonitor
+       POSTGRES_PASSWORD: plnmonitor
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plnmonitor"]
+      interval: 20s
+      timeout: 60s
+      retries: 5
+    networks:
+      plnmonnetwork:
+          aliases:
+          - plnmonitordb
+
+  plnmondaemon:
+    build: 
+       context: .
+       dockerfile: DockerfileDaemon  
+    links:
+      - plnmonitordb
+    depends_on:
+       plnmonitordb:
+          condition: service_healthy
+    environment:
+        WAIT_HOSTS: plnmonitordb:5432
+    networks:
+      - plnmonnetwork
+
+  plnmonwebapp:
+    build: 
+       context: .
+       dockerfile: DockerfileWebapp
+    ports:
+       - "8083:8080"
+    links:
+      - plnmonitordb
+    depends_on:
+       plnmonitordb:
+          condition: service_healthy
+    environment:
+        WAIT_HOSTS: plnmonitordb:5432
+    networks:
+      - plnmonnetwork
+
+      
+volumes: 
+  pln_dbdata:
+
+networks:
+  plnmonnetwork:
+    driver: bridge
+

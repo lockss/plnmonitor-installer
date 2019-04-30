@@ -1,0 +1,11 @@
+FROM tomcat:9.0-alpine
+
+ADD plnmonitor-webapp.war /usr/local/tomcat/webapps/
+
+EXPOSE 8081
+
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
+## Launch the wait tool and then application
+CMD ["sh","-c","/wait && catalina.sh run"]
