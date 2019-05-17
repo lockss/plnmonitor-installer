@@ -41,7 +41,7 @@ services:
        context: .
        dockerfile: DockerfileWebapp
     ports:
-       - "8083:8080"
+       - "8084:8080"
     links:
       - plnmonitordb
     depends_on:
