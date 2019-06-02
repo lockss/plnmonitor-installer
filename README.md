@@ -1,17 +1,26 @@
 # plnmonitor-installer
 
-To bring up plnmonitor containers (webapp, daemon and database), use:
+First, you need to configure plnmonitor:
 
 ```
-docker-compose up --build
+./config.sh
 ```
 
-A configuration script will be available *soon*  to customize the setup to test the tool for your own LOCKSS network. 
 
-It will allow the administrator to:
+This script allow the administrator to:
 - set the URL for their own LOCKSS network props server (lockss.xml) 
 - define the credentials to get status information for each box
 - provide additional information for each box (geographical coordinates, institution, administrator,...)
+
+
+Then, to bring up the plnmonitor containers (webapp, daemon and database), use:
+
+```
+./start.sh
+```
+
+The plnmonitor webapp is then available at the following URL:
+[http://127.0.0.1:8084/plnmonitor-webapp](http://127.0.0.1:8084/plnmonitor-webapp)
 
 ## Requirements
 

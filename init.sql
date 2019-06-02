@@ -778,5 +778,5 @@ SELECT pg_catalog.setval('"Peers_id_seq"', 11, true);
 
 SELECT pg_catalog.setval('"Person_id_seq"', 10, true);
 
-INSERT INTO pln VALUES ('SAFE', 'http://lockssadmin.ulb.ac.be/lockss.xml', 1);
+--INSERT INTO pln VALUES ('SAFE', 'http://lockssadmin.ulb.ac.be/lockss.xml', 1);
 --INSERT INTO user VALUES('admin', '$2a$10$l.qhKtMQd0ejggOp9NdVNuv6FBJdb3QGBavrvHkFAlqTRxP8XGAVi' ,'"ADMIN"');
