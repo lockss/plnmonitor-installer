@@ -628,6 +628,35 @@ ALTER SEQUENCE pln_id_seq OWNED BY pln.id;
 
 
 --
+-- Name: user_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
+--
+
+CREATE SEQUENCE user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE user_id_seq OWNER TO plnmonitor;
+
+--
+-- Name: user; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+CREATE TABLE "user" (
+    name text,
+    "passwordHash" text,
+    role text,
+    id integer DEFAULT nextval('user_id_seq'::regclass) NOT NULL
+);
+
+
+ALTER TABLE "user" OWNER TO plnmonitor;
+
+
+--
 -- TOC entry 2215 (class 2604 OID 57357)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
@@ -778,5 +807,3 @@ SELECT pg_catalog.setval('"Peers_id_seq"', 11, true);
 
 SELECT pg_catalog.setval('"Person_id_seq"', 10, true);
 
---INSERT INTO pln VALUES ('SAFE', 'http://lockssadmin.ulb.ac.be/lockss.xml', 1);
---INSERT INTO user VALUES('admin', '$2a$10$l.qhKtMQd0ejggOp9NdVNuv6FBJdb3QGBavrvHkFAlqTRxP8XGAVi' ,'"ADMIN"');
