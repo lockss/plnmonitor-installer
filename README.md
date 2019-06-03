@@ -7,7 +7,7 @@ First, you need to configure plnmonitor:
 ```
 
 
-This script allow the administrator to:
+This script allows the administrator to:
 - set the URL for their own LOCKSS network props server (lockss.xml) 
 - define the credentials to get status information for each box
 - provide additional information for each box (geographical coordinates, institution, administrator,...)
