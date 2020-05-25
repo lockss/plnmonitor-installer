@@ -7,11 +7,12 @@ services:
     ports:
        - "5432:5432"
     volumes: 
-       - ./pln_dbdata:/var/lib/postgresql/data
+       - pln_dbdata:/var/lib/postgresql/data
     environment:
        POSTGRES_DB: plnmonitor
        POSTGRES_USER: plnmonitor
        POSTGRES_PASSWORD: plnmonitor
+       PGDATA: /var/lib/postgresql/data/pgdata
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U plnmonitor"]
       interval: 20s

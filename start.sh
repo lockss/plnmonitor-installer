@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #start all plnmonitor services
 
 docker-compose up -d plnmonitordb
